@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html dir="ltr" xml:lang="en" lang="en"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+	<title>Rollover Demo</title> 
+	<style type="text/css"> 
+    </style> 
+	<script type="text/javascript"> 
+		function trouverimg()
+		{
+			var i,imgs;
+		// Rechercher toutes les images de la page HTML
+			imgs=document.getElementsByName('change');
+			for(i=0;i<imgs.length;i++)
+			{
+		// Chercher toutes les images qui ont une classe qui s'appelle change
+				if(/change/.test(imgs[i].className))
+				{
+		// Ajouter la fonction roll a l'image dans les cas onmouseover et onmouseout
+		// l'image elle meme est un object
+					imgs[i].onmouseover=function(){roll(this);};
+					imgs[i].onmouseout=function(){roll(this);};
+					imgs[i].onfocus=function(){roll(this);};
+					imgs[i].onblur=function(){roll(this);};
+				}
+			}
+		}
+		function roll(o)
+		{
+		// Recuperer la source de l'image
+			var src = o.src;
+			
+		// Verifier si l'image contient la chaine de caractere down et la remplacer avec la chaine up si tel est le cas 
+			if(/down/.test(src))
+			{
+				var newsrc = src.replace('down','up');
+			}else{
+		// sinon remplacer up par down 
+				var newsrc = src.replace('up','down');
+			}
+			o.src=newsrc;
+		}
+		window.onload=function(){
+			trouverimg();
+		}
+	</script> 
+</head> 
+<body> 
+
+<img src="up_48.png" name="change" class="change" alt="home" />				
+<img src="up_48.png" name="change" class="change" alt="home" />					
+<img src="down_48.png" name="change" class="change" alt="home" />					
+<img src="down_48.png" name="change" class="change" alt="home" />					
+</body> 
+</html> 
